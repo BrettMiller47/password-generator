@@ -19,11 +19,13 @@ generateBtn.addEventListener("click", writePassword);
 
 // Generate and return a password string according to global requirements
 function generatePassword() {
-  // Prompt for desired password length
+  // Prompt for desired password length until the length is an acceptable input value
   do {
     var desiredPassLen = prompt("How long will your password be? (min " + minLen + ", max " + maxLen + ")");
   }
   while (!isAcceptableLength(desiredPassLen));
+
+  // Prompt for...
 }
 
 // Return a boolean indicating whether the parameter (number) is acceptable
