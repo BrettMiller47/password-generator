@@ -25,7 +25,14 @@ function generatePassword() {
   }
   while (!isAcceptableLength(desiredPassLen));
 
-  // Prompt for...
+  // Prompt for boolean requirement for lowercase character(s)
+  // Prompt for boolean requirement for Uppercase character(s)
+  // Prompt for boolean requirement for Numberical character(s)
+  // Prompt for boolean requirement for Special character(s)
+  
+  // Use a for loop to construct a password of length desiredPassLen while satisfying character type requirements
+
+  // Return the password as a string
 }
 
 // Return a boolean indicating whether the parameter (number) is acceptable
