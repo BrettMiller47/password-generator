@@ -58,10 +58,14 @@ function generatePassword() {
     var desiredPassLen = prompt("How long will your password be? (min " + PASSWORD.minLen + ", max " + PASSWORD.maxLen + ")");
   }
   while (!isAcceptableLength(desiredPassLen));
-  // Use a for loop to construct a password of length desiredPassLen while satisfying character type requirements
-  
+  // Construct a password of length desiredPassLen while satisfying character type requirements
+  var constructedPassword = ""
+  for (i = 0; i < desiredPassLen; i++) {
+    
+  }
 
   // Return the password as a string
+  return constructedPassword;
 }
 
 // Return a boolean indicating whether the parameter (number) is acceptable
