@@ -7,7 +7,7 @@ var PASSWORD = {
   requiresNumerical: true,
   requiresSpecial: true
 }; 
-// Global object for ranges in Unicode dec system
+// Global dictionary for ranges in Unicode dec system
 var dictUnicodeDec = {
   lowercaseStart: 97,
   lowercaseEnd: 122,
@@ -82,6 +82,7 @@ function generatePassword() {
     var randInt = getRandInteger(startUniRange, endUniRange);
     var newChar = String.fromCharCode(randInt);
     
+    // Add the randomly selected character (of specified character type) to the constructedPassword
     constructedPassword += newChar;
   }
 
