@@ -85,8 +85,7 @@ function generatePassword() {
     // Add the randomly selected character (of specified character type) to the constructedPassword
     constructedPassword += newChar;
   }
-
-  // Return the password as a string
+  // Return the randomly constructed password as a string
   return constructedPassword;
 }
 
