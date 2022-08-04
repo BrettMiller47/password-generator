@@ -26,6 +26,8 @@ function generatePassword() {
   while (!isAcceptableLength(desiredPassLen));
 
   // Prompt for boolean requirement for lowercase character(s)
+  var requiresLowercaase = confirm("Is it okay to include lowercase characters? (a, b, c, etc.)");
+  console.log(requiresLowercaase);
   // Prompt for boolean requirement for Uppercase character(s)
   // Prompt for boolean requirement for Numberical character(s)
   // Prompt for boolean requirement for Special character(s)
@@ -40,7 +42,6 @@ function isAcceptableLength(num) {
   if ((num >= minLen) && (num <= maxLen)) {
     return true;
   } else {
-    console.log("false");
     return false;
   }
 }
