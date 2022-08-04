@@ -1,4 +1,4 @@
-// Global Object
+// Global object for password
 var PASSWORD = {
   minLen: 8,
   maxLen: 128,
@@ -6,8 +6,19 @@ var PASSWORD = {
   requiresUppercase: true,
   requiresNumerical: true,
   requiresSpecial: true
-};
-  
+}; 
+// Global object for ranges in Unicode dec system
+var dictUnicodeDec = {
+  lowercaseStart: 97,
+  lowercaseEnd: 122,
+  uppercaseStart: 65,
+  uppercaseEnd: 90,
+  numericalStart: 48,
+  numericalEnd: 57,
+  specialStart: 33,
+  specialEnd: 42
+}
+
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
@@ -62,6 +73,16 @@ function generatePassword() {
   var constructedPassword = "";
   for (i = 0; i < desiredPassLen; i++) {
     
+    // Determine the character type and 
+
+    // startUniRange & endUniRange must be changed to a variable value determined by character type
+    // Get the random character and store in local variable newChar
+    var startUniRange = 97;
+    var endUniRange = 122;
+    var randInt = getRandInteger(startUniRange, endUniRange);
+    var newChar = String.fromCharCode(randInt);
+    
+    constructedPassword += newChar;
   }
 
   // Return the password as a string
@@ -75,4 +96,9 @@ function isAcceptableLength(num) {
   } else {
     return false;
   }
+}
+
+// Return a random integer between the min and max parameters
+function getRandInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
