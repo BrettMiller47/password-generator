@@ -59,7 +59,7 @@ function generatePassword() {
   }
   while (!isAcceptableLength(desiredPassLen));
   // Construct a password of length desiredPassLen while satisfying character type requirements
-  var constructedPassword = ""
+  var constructedPassword = "";
   for (i = 0; i < desiredPassLen; i++) {
     
   }
