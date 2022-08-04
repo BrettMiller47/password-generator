@@ -25,12 +25,6 @@ generateBtn.addEventListener("click", writePassword);
 
 // Generate and return a password string according to global requirements
 function generatePassword() {
-  // Prompt for desired password length until the length is an acceptable input value
-  do {
-    var desiredPassLen = prompt("How long will your password be? (min " + PASSWORD.minLen + ", max " + PASSWORD.maxLen + ")");
-  }
-  while (!isAcceptableLength(desiredPassLen));
-
   // Confirm boolean requirement for lowercase character(s)
   var confirmLowercase = confirm("Is it okay to include lowercase characters? (a, b, c, etc.) If not, press Cancel.");
   if (confirmLowercase) {
@@ -38,7 +32,6 @@ function generatePassword() {
   } else {
     PASSWORD.requiresLowercase = false;
   }
-
   // Confirm boolean requirement for uppercase character(s)
   var confirmUppercase = confirm("Is it okay to include uppercase characters? (A, B, C, etc.) If not, press Cancel.");
   if (confirmUppercase) {
@@ -46,7 +39,6 @@ function generatePassword() {
   } else {
     PASSWORD.requiresUppercase = false;
   }
-
   // Confirm boolean requirement for numerical character(s)
   var confirmNumerical = confirm("Is it okay to include numerical characters? (1, 2, 3, etc.) If not, press Cancel.");
   if (confirmNumerical) {
@@ -54,7 +46,6 @@ function generatePassword() {
   } else {
     PASSWORD.requiresNumerical = false;
   }
-
   // Confirm boolean requirement for special character(s)
   var confirmSpecial = confirm("Is it okay to include special characters? (?, $, #, etc.) If not, press Cancel.");
   if (confirmSpecial) {
@@ -62,8 +53,13 @@ function generatePassword() {
   } else {
     PASSWORD.requiresSpecial = false;
   }
-  
+  // Prompt for desired password length until the length is an acceptable input value
+  do {
+    var desiredPassLen = prompt("How long will your password be? (min " + PASSWORD.minLen + ", max " + PASSWORD.maxLen + ")");
+  }
+  while (!isAcceptableLength(desiredPassLen));
   // Use a for loop to construct a password of length desiredPassLen while satisfying character type requirements
+  
 
   // Return the password as a string
 }
