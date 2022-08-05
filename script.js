@@ -7,17 +7,12 @@ var PASSWORD = {
   requiresNumerical: true,
   requiresSpecial: true
 }; 
-// Global dictionary for ranges in Unicode dec system
-var dictUnicodeDec = {
-  lowercaseStart: 97,
-  lowercaseEnd: 122,
-  uppercaseStart: 65,
-  uppercaseEnd: 90,
-  numericalStart: 48,
-  numericalEnd: 57,
-  specialStart: 33,
-  specialEnd: 42
-}
+
+// Global objects for character types
+var ALL_LOWERCASE = "abcdefghijklmnopqrstuvwxyz";
+var ALL_UPPERCASE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var ALL_NUMERICAL = "0123456789";
+var ALL_SPECIAL = "~:+[@^{%(-}._=]!";
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
@@ -76,15 +71,49 @@ function generatePassword() {
   }
 
   // Construct a password of length desiredPassLen while satisfying character type requirements
+  var allAcceptChar = "";
   var constructedPassword = "";
-  for (i = 0; i < desiredPassLen; i++) {
-    // Determine the character type
-    // startUniRange & endUniRange must be changed to a variable value determined by character type
-    // Get the random character and store in local variable newChar
-    var startUniRange = 97;
-    var endUniRange = 122;
-    var randInt = getRandInteger(startUniRange, endUniRange);
-    var newChar = String.fromCharCode(randInt);
+  for (i = 0; i < desiredPassLen; i++) {  
+    // If there is a _charType_ required but not in the constructedPassword...
+    if (confirmLowercase && PASSWORD.requiresLowercase) {
+      // Get a new character of this type
+      var randInt = getRandInteger(0, ALL_LOWERCASE.length - 1);
+      var newChar = ALL_LOWERCASE.charAt(randInt);
+      // Add the character type's entire list to a combined list with other acceptable characters of different type
+      console.log(allAcceptChar.length);
+      allAcceptChar.concat(ALL_LOWERCASE);
+      console.log(allAcceptChar.length);
+      // Indicate that it is no longer required
+      PASSWORD.requiresLowercase = false;
+    } else if (confirmUppercase && PASSWORD.requiresUppercase) {
+      // Get a new character of this type
+      var randInt = getRandInteger(0, ALL_UPPERCASE - 1);
+      var newChar = ALL_UPPERCASE.charAt(randInt);
+      // Add the character type's entire list to a combined list with other acceptable characters of different type
+      allAcceptChar.concat(ALL_UPPERCASE);
+      // Indicate that it is no longer required
+      PASSWORD.requiresUppercase = false;
+    } else if (confirmNumerical && PASSWORD.requiresNumerical) {
+      // Get a new character of this type
+      var randInt = getRandInteger(0, ALL_NUMERICAL.length - 1);
+      var newChar = ALL_NUMERICAL.charAt(randInt);
+      // Add the character type's entire list to a combined list with other acceptable characters of different type
+      allAcceptChar.concat(ALL_NUMERICAL);
+      // Indicate that it is no longer required
+      PASSWORD.requiresNumerical = false;
+    } else if (confirmSpecial && PASSWORD.requiresSpecial) {
+      // Get a new character of this type
+      var randInt = getRandInteger(0, ALL_SPECIAL.length - 1);
+      var newChar = ALL_SPECIAL.charAt(randInt);
+      // Add the character type's entire list to a combined list with other acceptable characters of different type
+      allAcceptChar.concat(ALL_SPECIAL);
+      // Indicate that it is no longer required
+      PASSWORD.requiresSpecial = false; 
+    } else {
+      // No unnaddressed type requirement, so any acceptable character is chosen as newChar
+      var randInt = getRandInteger(0, allAcceptChar.length - 1);
+      var newChar = allAcceptChar.charAt(randInt);
+    }
     // Add the randomly selected character (of specified character type) to the constructedPassword
     constructedPassword += newChar;
   }
